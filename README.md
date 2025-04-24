@@ -117,12 +117,24 @@ Cách 1: Phân tích tên (ten) để suy ra giới tính (ví dụ: tên thư�
 Cách 2: Giả định có một cách khác để xác định giới tính (ví dụ: mã sinh viên chứa ký tự chỉ giới tính, hoặc dữ liệu từ bảng khác). Vì không có thông tin này, tôi sẽ bỏ điều kiện giới tính và chỉ lọc ngành KMT, đồng thời ghi chú vấn đề.
 Cách 3: Yêu cầu xác nhận xem có bảng khác chứa thông tin giới tính hay không.
 - Quyết định:
-Vì không có cột GioiTinh, em sẽ viết câu lệnh chỉ lọc sinh viên ngành KMT.
+Vì không có cột GioiTinh, em sẽ viết câu lệnh chỉ lọc sinh viên có họ đệm tên 'thị' và tên gồm những tên nũ phổ biến ở Việt Nam như 'Loan, Hoài, Giang, Hồng,Lan, Hương, Thảo, Mai,Hoa, Trang, Thu, Nhung,Yến, Dung, Quyên, Oanh, Hằng,Thủy, Vân, Phương, Nga, Kiều, Ý,Duyên,Diễm'.
 ```
-SELECT *
+SELECT masv, hodem, ten, ns, lop, sdt
 FROM SV
-WHERE lop LIKE N'%KMT%';
+WHERE lop LIKE '%KMT%'
+AND (
+    hodem LIKE N'%Thị%'
+    OR ten IN (
+        N'Loan', N'Hoài', N'Giang', N'Hồng',
+        N'Lan', N'Hương', N'Thảo', N'Mai',
+         N'Hoa', N'Trang', N'Thu', N'Nhung',
+        N'Yến', N'Dung', N'Quyên', N'Oanh','Hằng',
+        N'Thủy', N'Vân', N'Phương', N'Nga','Kiều','Ý','Trang','Diễm'
+    )
+)
+ORDER BY ten COLLATE Vietnamese_CI_AS, hodem COLLATE Vietnamese_CI_AS;
 ```
-![image](https://github.com/user-attachments/assets/c5c1c790-ec3c-4051-8b8e-45584502e973)
+![image](https://github.com/user-attachments/assets/4aa8a4cf-378b-4917-88ba-70a18c6a5a75)
+
 
 

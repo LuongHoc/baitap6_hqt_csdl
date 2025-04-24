@@ -113,11 +113,13 @@ Chỉ lấy sinh viên nữ. Nhưng bảng không có cột GioiTinh, đây là 
 - Vướng mắc:
 Không có cột GioiTinh: Bảng chỉ có masv, hodem, ten, ns, lop,sdt:
 ### Giải pháp:
-Cách 1: Phân tích tên (ten) để suy ra giới tính (ví dụ: tên thường gặp ở nữ như Hương, Lan). Tuy nhiên, cách này có thể  không chính xác. 
-Cách 2: Giả định có một cách khác để xác định giới tính (ví dụ: mã sinh viên chứa ký tự chỉ giới tính, hoặc dữ liệu từ bảng khác). Vì không có thông tin này, tôi sẽ bỏ điều kiện giới tính và chỉ lọc ngành KMT, đồng thời ghi chú vấn đề.
+Cách 1: Phân tích họ đệm (hodem) hoặc tên (ten) để suy ra giới tính (ví dụ: tên thường gặp ở nữ như Hương, Lan). Tuy nhiên, cách này có thể  không chính xác. 
+
+Cách 2: Giả định có một cách khác để xác định giới tính (ví dụ: mã sinh viên chứa ký tự chỉ giới tính, hoặc dữ liệu từ bảng khác). Vì không có thông tin này, em sẽ bỏ điều kiện giới tính và chỉ lọc ngành KMT.
+
 Cách 3: Yêu cầu xác nhận xem có bảng khác chứa thông tin giới tính hay không.
 - Quyết định:
-Vì không có cột GioiTinh, em sẽ viết câu lệnh chỉ lọc sinh viên có họ đệm tên 'thị' và tên gồm những tên nũ phổ biến ở Việt Nam như 'Loan, Hoài, Giang, Hồng,Lan, Hương, Thảo, Mai,Hoa, Trang, Thu, Nhung,Yến, Dung, Quyên, Oanh, Hằng,Thủy, Vân, Phương, Nga, Kiều, Ý,Duyên,Diễm'.
+Vì không có cột GioiTinh, em sẽ viết câu lệnh chỉ lọc sinh viên có họ đệm tên 'thị' và tên gồm những tên nữ phổ biến ở Việt Nam như 'Loan, Hoài, Giang, Hồng,Lan, Hương, Thảo, Mai,Hoa, Trang, Thu, Nhung,Yến, Dung, Quyên, Oanh, Hằng,Thủy, Vân, Phương, Nga, Kiều, Ý,Duyên,Diễm'.
 ```
 SELECT masv, hodem, ten, ns, lop, sdt
 FROM SV

@@ -111,7 +111,7 @@ ORDER BY ten, hodem COLLATE Vietnamese_CI_AI;
 Tìm sinh viên thuộc ngành KMT (giả định qua cột lop chứa KMT).
 Chỉ lấy sinh viên nữ. Nhưng bảng không có cột GioiTinh, đây là một vướng mắc.
 - Vướng mắc:
-Không có cột GioiTinh: Bảng chỉ có masv, hodem, ten, ns, lop, `s przestrzeń:
+Không có cột GioiTinh: Bảng chỉ có masv, hodem, ten, ns, lop,sdt:
 ### Giải pháp:
 Cách 1: Phân tích tên (ten) để suy ra giới tính (ví dụ: tên thường gặp ở nữ như Hương, Lan). Tuy nhiên, cách này có thể  không chính xác. 
 Cách 2: Giả định có một cách khác để xác định giới tính (ví dụ: mã sinh viên chứa ký tự chỉ giới tính, hoặc dữ liệu từ bảng khác). Vì không có thông tin này, tôi sẽ bỏ điều kiện giới tính và chỉ lọc ngành KMT, đồng thời ghi chú vấn đề.

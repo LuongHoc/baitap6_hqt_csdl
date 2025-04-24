@@ -31,3 +31,45 @@ Cho file sv_tnut.sql (1.6MB)
 - Dùng lệnh: SELECT * FROM SV;
 ![image](https://github.com/user-attachments/assets/65681ce2-9c83-44e5-9ae7-ddd53a29a15c)
 ## 2. Dữ liệu đầu vào 
+- Tên: Lương Văn Học
+- Sđt: 0329379387
+- Ngày, tháng, năm sinh: 02/06/2004
+## 3. Nhập sql để tìm xem có những sv nào trùng hoàn toàn ngày/tháng/năm với em?
+Sử dụng lệnh:
+```
+SELECT *
+FROM SV
+WHERE ns = '2004-06-02';
+```
+![image](https://github.com/user-attachments/assets/1fb470d0-d576-4796-be8d-c7b565228540)
+## 4. Nhập sql để tìm xem có những sv nào trùng ngày và tháng sinh với em?
+Sử dụng lệnh:
+```
+SELECT *
+FROM SV
+WHERE DAY(ns) = 2 AND MONTH(ns) = 6;
+```
+![image](https://github.com/user-attachments/assets/c1427a59-f059-4287-a693-95bca2e0e98d)
+## 5. Nhập sql để tìm xem có những sv nào trùng tháng và năm sinh với em?
+Sử dụng lệnh:
+```
+SELECT *
+FROM SV
+WHERE MONTH(ns) = 6 AND YEAR(ns) = 2004;
+```
+![image](https://github.com/user-attachments/assets/a4813c10-9d7d-4ef9-a608-0b38a04ba155)
+## 6. Nhập sql để tìm xem có những sv nào trùng tên với em?
+Sử dụng lệnh:
+```
+SELECT *
+FROM SV
+WHERE ten = N'Học';
+```
+![image](https://github.com/user-attachments/assets/f40d8584-cd22-4bcb-ac8c-d15e93182edc)
+
+
+
+
+
+
+

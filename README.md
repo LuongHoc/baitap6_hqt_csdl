@@ -66,10 +66,63 @@ FROM SV
 WHERE ten = N'Học';
 ```
 ![image](https://github.com/user-attachments/assets/f40d8584-cd22-4bcb-ac8c-d15e93182edc)
+## 7. Nhập sql để tìm xem có những sv nào trùng họ và tên đệm với em.
+sử dụng lệnh:
+```
+SELECT *
+FROM SV
+WHERE hodem = N'Lương Văn';
+```
+![image](https://github.com/user-attachments/assets/a8c328f2-9d7e-46d7-a2e2-35efcc6ace49)
+## 8. Nhập sql để tìm xem có những sv nào có sđt sai khác chỉ 1 số so với sđt của em.
+Sử dụng lệnh:
+```
+DECLARE @YourPhone NVARCHAR(26) = '0329379387';
 
-
-
-
-
+SELECT *
+FROM SV
+WHERE LEN(sdt) = 10
+AND (
+    (SUBSTRING(sdt, 1, 1) <> SUBSTRING(@YourPhone, 1, 1) AND SUBSTRING(sdt, 2, 9) = SUBSTRING(@YourPhone, 2, 9)) OR
+    (SUBSTRING(sdt, 1, 1) = SUBSTRING(@YourPhone, 1, 1) AND SUBSTRING(sdt, 2, 1) <> SUBSTRING(@YourPhone, 2, 1) AND SUBSTRING(sdt, 3, 8) = SUBSTRING(@YourPhone, 3, 8)) OR
+    (SUBSTRING(sdt, 1, 2) = SUBSTRING(@YourPhone, 1, 2) AND SUBSTRING(sdt, 3, 1) <> SUBSTRING(@YourPhone, 3, 1) AND SUBSTRING(sdt, 4, 7) = SUBSTRING(@YourPhone, 4, 7)) OR
+    (SUBSTRING(sdt, 1, 3) = SUBSTRING(@YourPhone, 1, 3) AND SUBSTRING(sdt, 4, 1) <> SUBSTRING(@YourPhone, 4, 1) AND SUBSTRING(sdt, 5, 6) = SUBSTRING(@YourPhone, 5, 6)) OR
+    (SUBSTRING(sdt, 1, 4) = SUBSTRING(@YourPhone, 1, 4) AND SUBSTRING(sdt, 5, 1) <> SUBSTRING(@YourPhone, 5, 1) AND SUBSTRING(sdt, 6, 5) = SUBSTRING(@YourPhone, 6, 5)) OR
+    (SUBSTRING(sdt, 1, 5) = SUBSTRING(@YourPhone, 1, 5) AND SUBSTRING(sdt, 6, 1) <> SUBSTRING(@YourPhone, 6, 1) AND SUBSTRING(sdt, 7, 4) = SUBSTRING(@YourPhone, 7, 4)) OR
+    (SUBSTRING(sdt, 1, 6) = SUBSTRING(@YourPhone, 1, 6) AND SUBSTRING(sdt, 7, 1) <> SUBSTRING(@YourPhone, 7, 1) AND SUBSTRING(sdt, 8, 3) = SUBSTRING(@YourPhone, 8, 3)) OR
+    (SUBSTRING(sdt, 1, 7) = SUBSTRING(@YourPhone, 1, 7) AND SUBSTRING(sdt, 8, 1) <> SUBSTRING(@YourPhone, 8, 1) AND SUBSTRING(sdt, 9, 2) = SUBSTRING(@YourPhone, 9, 2)) OR
+    (SUBSTRING(sdt, 1, 8) = SUBSTRING(@YourPhone, 1, 8) AND SUBSTRING(sdt, 9, 1) <> SUBSTRING(@YourPhone, 9, 1) AND SUBSTRING(sdt, 10, 1) = SUBSTRING(@YourPhone, 10, 1)) OR
+    (SUBSTRING(sdt, 1, 9) = SUBSTRING(@YourPhone, 1, 9) AND SUBSTRING(sdt, 10, 1) <> SUBSTRING(@YourPhone, 10, 1))
+);
+```
+![image](https://github.com/user-attachments/assets/c0638be7-c7a2-4e8d-8b16-ca9deff44e07)
+## 9.  Hãy liệt kê tất cả các sv ngành kmt, sắp xếp theo tên và họ đệm, kiểu tiếng  việt, giải thích.
+Sử dụng lệnh:
+```
+SELECT *
+FROM SV
+WHERE lop LIKE N'%KMT%'
+ORDER BY ten, hodem COLLATE Vietnamese_CI_AI;
+```
+![image](https://github.com/user-attachments/assets/bdabd743-8cfc-42ec-ba45-56ee8e449ffa)
+## 10. Hãy nhập sql để liệt kê các sv nữ ngành kmt có trong bảng sv (trình bày quá trình suy nghĩ và giải những vướng mắc)
+###  Quá trình suy nghĩ:
+- Xác định yêu cầu:
+Tìm sinh viên thuộc ngành KMT (giả định qua cột lop chứa KMT).
+Chỉ lấy sinh viên nữ. Nhưng bảng không có cột GioiTinh, đây là một vướng mắc.
+- Vướng mắc:
+Không có cột GioiTinh: Bảng chỉ có masv, hodem, ten, ns, lop, `s przestrzeń:
+### Giải pháp:
+Cách 1: Phân tích tên (ten) để suy ra giới tính (ví dụ: tên thường gặp ở nữ như Hương, Lan). Tuy nhiên, cách này có thể  không chính xác. 
+Cách 2: Giả định có một cách khác để xác định giới tính (ví dụ: mã sinh viên chứa ký tự chỉ giới tính, hoặc dữ liệu từ bảng khác). Vì không có thông tin này, tôi sẽ bỏ điều kiện giới tính và chỉ lọc ngành KMT, đồng thời ghi chú vấn đề.
+Cách 3: Yêu cầu xác nhận xem có bảng khác chứa thông tin giới tính hay không.
+- Quyết định:
+Vì không có cột GioiTinh, em sẽ viết câu lệnh chỉ lọc sinh viên ngành KMT.
+```
+SELECT *
+FROM SV
+WHERE lop LIKE N'%KMT%';
+```
+![image](https://github.com/user-attachments/assets/c5c1c790-ec3c-4051-8b8e-45584502e973)
 
 
